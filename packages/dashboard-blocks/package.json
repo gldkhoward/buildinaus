@@ -1,0 +1,29 @@
+{
+  "name": "@buildinaus/dashboard-blocks",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./registry": "./src/registry.ts",
+    "./components/*": "./src/components/*.tsx"
+  },
+  "scripts": {
+    "lint": "echo \"(no lint configured)\"",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .turbo dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@buildinaus/types": "workspace:*",
+    "@buildinaus/ui": "workspace:*",
+    "lucide-react": "^0.564.0"
+  },
+  "devDependencies": {
+    "@buildinaus/config": "workspace:*",
+    "@types/react": "^19",
+    "typescript": "5.7.3"
+  },
+  "peerDependencies": {
+    "react": "^19",
+    "react-dom": "^19"
+  }
+}

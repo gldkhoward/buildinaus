@@ -1,0 +1,20 @@
+{
+  "name": "@buildinaus/config",
+  "version": "0.1.0",
+  "private": true,
+  "files": [
+    "tsconfig",
+    "eslint",
+    "tailwind"
+  ],
+  "exports": {
+    "./tsconfig/*": "./tsconfig/*",
+    "./eslint/*": "./eslint/*.js",
+    "./tailwind/*": "./tailwind/*.ts"
+  },
+  "scripts": {
+    "lint": "echo \"(no lint configured)\"",
+    "type-check": "echo \"(no source)\"",
+    "clean": "rm -rf .turbo"
+  }
+}

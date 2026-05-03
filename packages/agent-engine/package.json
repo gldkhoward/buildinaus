@@ -1,0 +1,26 @@
+{
+  "name": "@buildinaus/agent-engine",
+  "version": "0.1.0",
+  "private": true,
+  "exports": {
+    ".": "./src/index.ts",
+    "./scrapers": "./src/scrapers/index.ts",
+    "./trust": "./src/trust/index.ts",
+    "./parser": "./src/parser/index.ts"
+  },
+  "scripts": {
+    "lint": "echo \"(no lint configured)\"",
+    "type-check": "tsc --noEmit",
+    "clean": "rm -rf .turbo dist *.tsbuildinfo"
+  },
+  "dependencies": {
+    "@buildinaus/types": "workspace:*",
+    "ai": "^6.0.0",
+    "zod": "^3.24.1"
+  },
+  "devDependencies": {
+    "@buildinaus/config": "workspace:*",
+    "@types/node": "^22",
+    "typescript": "5.7.3"
+  }
+}
