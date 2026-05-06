@@ -10,7 +10,8 @@
     "./atoms/*": "./src/atoms/*.tsx",
     "./hooks/*": "./src/hooks/*.ts",
     "./lib/*": "./src/lib/*.ts",
-    "./branding/*": "./src/branding/*.tsx"
+    "./branding/*": "./src/branding/*.tsx",
+    "./layouts/*": "./src/layouts/*.tsx"
   },
   "scripts": {
     "lint": "echo \"(no lint configured)\"",

@@ -4,9 +4,17 @@
   "private": true,
   "exports": {
     ".": "./src/index.ts",
+    "./agent": "./src/agent.ts",
+    "./intake-agent": "./src/intake-agent.ts",
+    "./intake-tools": "./src/intake-tools.ts",
+    "./tools": "./src/tools/index.ts",
     "./scrapers": "./src/scrapers/index.ts",
+    "./schemas": "./src/schemas.ts",
     "./trust": "./src/trust/index.ts",
-    "./parser": "./src/parser/index.ts"
+    "./parser": "./src/parser/index.ts",
+    "./presenter": "./src/presenter.ts",
+    "./persistence": "./src/persistence.ts",
+    "./embed": "./src/embed.ts"
   },
   "scripts": {
     "lint": "echo \"(no lint configured)\"",
@@ -14,6 +22,8 @@
     "clean": "rm -rf .turbo dist *.tsbuildinfo"
   },
   "dependencies": {
+    "@ai-sdk/gateway": "^3.0.0",
+    "@buildinaus/database": "workspace:*",
     "@buildinaus/types": "workspace:*",
     "ai": "^6.0.0",
     "zod": "^3.24.1"

@@ -1,19 +1,33 @@
-export type UserRole =
-  | "founder"
-  | "operator"
-  | "investor"
-  | "engineer"
-  | "researcher"
-  | "student"
+/**
+ * Public type surface for BuildinAus.
+ *
+ * Two layers:
+ * - **Value types** (`./values`): string-literal unions and helpers like
+ *   `CitySlug`, `City`, `FounderType`, `BlockId`, `cityLabel`. Mirrored
+ *   in `@buildinaus/database` (pgEnum values) so both sides stay in sync.
+ * - **View types** (this file): app-facing entity shapes consumed by
+ *   components. They differ from Drizzle row types — display fields
+ *   (`city: City`), denormalised joins (`founderSlugs: string[]`), and
+ *   string-formatted timestamps (`postedAt: "2 days ago"`) live here.
+ *
+ * Drizzle row types (`typeof companies.$inferSelect`, etc.) live in
+ * `@buildinaus/database`. The `lib/data/*` translation layer in the web
+ * app maps row → view; nothing else should touch row types directly.
+ */
 
-export type City =
-  | "sydney"
-  | "melbourne"
-  | "brisbane"
-  | "perth"
-  | "adelaide"
-  | "canberra"
-  | "remote"
+import type {
+  BlockId,
+  City,
+  CompanyStage,
+  EventSource,
+  FounderType,
+  JobType,
+  UserRole,
+} from "./values"
+
+export * from "./values"
+
+/* ── User ─────────────────────────────────────────────────────────────── */
 
 export interface User {
   id: string
@@ -27,34 +41,64 @@ export interface User {
   createdAt: Date
 }
 
-export interface Startup {
-  id: string
+/* ── Company ──────────────────────────────────────────────────────────── */
+
+export interface Company {
   slug: string
   name: string
-  domain: string
+  tagline: string
   description: string
   city: City
   industry: string[]
-  founderIds: string[]
+  stage: CompanyStage
+  founderSlugs: string[]
   trustScore: number
   domainAgeDays: number
-  createdAt: Date
+  metric: { label: string; value: string }
 }
 
-export type BlockId =
-  | "vc-map"
-  | "jobs-board"
-  | "events-feed"
-  | "robotics-labs"
-  | "blackbird-grants"
-  | "founder-leaderboard"
+/* ── Founder ──────────────────────────────────────────────────────────── */
 
-export interface BlockDefinition {
-  id: BlockId
+export interface Founder {
+  slug: string
+  name: string
+  role: string
+  companySlug: string
+  city: City
+  type: FounderType
+  bio: string
+  linkedin?: string
+}
+
+/* ── Job ──────────────────────────────────────────────────────────────── */
+
+export interface Job {
+  id: string
   title: string
+  companySlug: string
+  city: City
+  salary: string
+  type: JobType
+  postedAt: string
   description: string
-  defaultProps?: Record<string, unknown>
+  applyUrl?: string
 }
+
+/* ── Event ────────────────────────────────────────────────────────────── */
+
+export interface Event {
+  id: string
+  title: string
+  city: City
+  startsAt: string
+  venue: string
+  rsvp: number
+  source: EventSource
+  description: string
+  platformUrl?: string
+}
+
+/* ── Tailored-page personalisation ────────────────────────────────────── */
 
 export interface CuratedConfig {
   id: string

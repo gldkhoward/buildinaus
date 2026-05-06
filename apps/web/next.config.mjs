@@ -1,5 +1,8 @@
+import { withWorkflow } from "workflow/next"
+
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+  cacheComponents: true,
   transpilePackages: [
     "@buildinaus/ui",
     "@buildinaus/dashboard-blocks",
@@ -7,12 +10,19 @@ const nextConfig = {
     "@buildinaus/database",
     "@buildinaus/types",
   ],
-  typescript: {
-    ignoreBuildErrors: true,
+  experimental: {
+    // Tree-shake huge icon barrels — saves ~300KB on the client bundle.
+    optimizePackageImports: ["lucide-react"],
   },
   images: {
-    unoptimized: true,
+    // Vercel Blob is the canonical store for company logos, founder avatars,
+    // and event covers. Keep this list narrow — every host added here is
+    // surface area for arbitrary downstream image fetches.
+    remotePatterns: [
+      { protocol: "https", hostname: "*.public.blob.vercel-storage.com" },
+      { protocol: "https", hostname: "*.blob.vercel-storage.com" },
+    ],
   },
 }
 
-export default nextConfig
+export default withWorkflow(nextConfig)

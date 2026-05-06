@@ -1,9 +1,9 @@
-import { SiteHeader } from "@/components/site-header"
-import { Hero } from "@/components/hero"
-import { TrendingBento } from "@/components/trending-bento"
-import { EcosystemStats } from "@/components/ecosystem-stats"
-import { CtaSection } from "@/components/cta-section"
-import { SiteFooter } from "@/components/site-footer"
+import { SiteHeader } from "@/components/layout/site-header"
+import { Hero } from "@/components/landing/hero"
+import { TrendingBento } from "@/components/landing/trending-bento"
+import { EcosystemStats } from "@/components/landing/ecosystem-stats"
+import { CtaSection } from "@/components/landing/cta-section"
+import { SiteFooter } from "@/components/layout/site-footer"
 
 export default function Page() {
   return (
